@@ -1,0 +1,5 @@
+{
+  "port": 8070,
+  "ReadTimeout": 5000,
+  "WriteTimeout": 5000
+}
