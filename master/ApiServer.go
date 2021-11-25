@@ -39,14 +39,14 @@ func InitApiServer() (err error){
 	mux.HandleFunc("/job/save", handlerJobSave)
 	mux.HandleFunc("/job/delete", handlerJobDelete)
 	// 监听端口
-	listerner, err = net.Listen("tcp", ":"+strconv.Itoa(Config.port))
+	listerner, err = net.Listen("tcp", ":"+strconv.Itoa(G_config.port))
 	if err != nil {
 		return err
 	}
 	// 创建http服务
-	httpServer := &http.Serve{
-		ReadTimeout: time.Duration(G_apiServe),
-		WriteTimeout: time.Duration(G_apiServe),
+	httpServer := &http.Server{
+		ReadTimeout: time.Duration(G_config.ReadTimeout) * time.Millisecond,
+		WriteTimeout: time.Duration(G_config.WriteTimeout) * time.Millisecond,
 		Handler:mux,
 	}
 	// 赋值单例
@@ -54,6 +54,6 @@ func InitApiServer() (err error){
 		httpServer: httpServer,
 	}
 	// 启动服务端
-	go httpServer.sever(listerner)
+	go httpServer.Serve(listerner)
 	return nil
 }

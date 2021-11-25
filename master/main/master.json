@@ -1,5 +1,13 @@
 {
   "port": 8070,
+  
   "ReadTimeout": 5000,
-  "WriteTimeout": 5000
+
+  "WriteTimeout": 5000,
+
+  "etcd集群列表": "配置多个避免单点故障",
+  "etcdAndPoints": ["127.0.0.1:2379"],
+
+  "etcd连接超时": 0,
+  "etcdDialTimeout": "5000"
 }

@@ -25,8 +25,16 @@ func main()  {
 		err error
 	)
 	// 初始化
-	initEnv()
 	initArgs()
+	initEnv()
+	if err = master.InitConfig(fileName);err != nil {
+		goto ERR
+	}
+	// 任务管理器
+	if err = master.InitJobMgr();err != nil {
+		goto ERR
+	}
+
 	// 启动HTTP服务
 	if err = master.InitApiServer(); err != nil {
 		goto ERR
