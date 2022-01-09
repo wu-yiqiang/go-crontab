@@ -1,18 +1,27 @@
 package master
 
 import (
+	"fmt"
 	"net"
 	"net/http"
-	"time"
 	"strconv"
+	"time"
 )
 
 type ApiServer struct {
 	httpServer *http.Server
 }
 
-func handlerJobSave(w http.ResponseWriter,  r *http.Request) {
-	
+func handlerJobSave(resp http.ResponseWriter,  req *http.Request) {
+	var (
+		err error
+	)
+	if err = req.ParseForm(); err != nil {
+		goto ERR
+	}
+	ERR:
+		fmt.Println()
+
 }
 
 // 删除任务
